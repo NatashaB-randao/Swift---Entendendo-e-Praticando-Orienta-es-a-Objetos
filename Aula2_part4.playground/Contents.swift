@@ -63,7 +63,21 @@ print(contaCorrente.saldo)
 
 //Polimorfismo -> é a habilidade de tratar os objetos de maneira diferente dependendo do contexto em que estão inseridos
 func exibeSaldoDaConta(_ conta: Conta) {
-    print(conta.saldo)
+    if conta is ContaCorrente {
+        print("A conta é do tipo Conta Corrente")
+    }
+    
+    //Typecasting (as?) -> verificação
+    if let contaCorrente = conta as? ContaCorrente {
+        contaCorrente.solicitarEmprestimo(200)
+    }
+    
+    guard let contaPoupanca = conta as? ContaPoupanca else {
+        return
+    }
+    print(contaPoupanca.possuiCartaoDebito)
+    
+    
 }
 
 exibeSaldoDaConta(contaCorrente)
